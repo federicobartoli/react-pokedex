@@ -1,10 +1,13 @@
 //React
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 //Axios
 import axios from "axios";
+import PokeCard from "./components/PokeCard";
+//Context
+import { AllPokemonContext } from "./context/AllPokemonContext";
 
 function App() {
-  const [allPokemon, setAllPokemon] = useState([]);
+  const [allPokemon, setAllPokemon] = useContext(AllPokemonContext);
   const [loadMore, setLoadMore] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=20"
   );
@@ -36,6 +39,10 @@ function App() {
   return (
     <div className="App">
       <h1>Pokemon</h1>
+      {allPokemon.map((pokemon) => (
+        <PokeCard name={pokemon.name} key={pokemon.id} />
+      ))}
+      <button onClick={getAllPokemon}></button>
     </div>
   );
 }
