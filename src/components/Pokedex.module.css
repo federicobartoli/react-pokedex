@@ -1,0 +1,5 @@
+.pokedex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  grid-gap: 25px 45px;
+}
