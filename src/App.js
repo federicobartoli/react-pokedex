@@ -32,6 +32,10 @@ function App() {
     createObj(data.results);
   };
 
+  const catchedHandler = (e) => {
+    console.log(e.currentTarget.checked, "ciao");
+  };
+
   console.log(allPokemon);
 
   useEffect(() => {
@@ -46,9 +50,12 @@ function App() {
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => (
             <PokeCard
+              catchedHandler={catchedHandler}
               img={pokemon.sprites.other.dream_world.front_default}
               name={pokemon.name}
               key={pokemon.id}
+              id={pokemon.id}
+              type={pokemon.types[0].type.name}
             />
           ))}
       </Pokedex>

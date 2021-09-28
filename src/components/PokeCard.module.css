@@ -7,7 +7,30 @@
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
 }
 
-.card img {
+.card:hover img {
+  transform: scale(1.2);
+  transition: all 0.4s ease;
+}
+
+img {
   width: 120px;
   height: 120px;
+}
+
+p {
+  color: #919191;
+  font-size: 80%;
+  padding-top: 2px;
+  margin: 0 15px;
+  display: flex;
+}
+
+h5 {
+  display: flex;
+  color: #313131;
+  text-transform: none;
+  font-size: 145%;
+  margin: 5px 15px;
+  text-transform: capitalize;
+  justify-content: center;
 }
