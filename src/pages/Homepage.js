@@ -139,7 +139,7 @@ function Homepage() {
       </Pokedex>
       {!filterCatched && (
         <button className="loadmore" onClick={getAllPokemon}>
-          Carica altri
+          Load More
         </button>
       )}
     </div>
