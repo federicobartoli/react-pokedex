@@ -16,6 +16,7 @@ function Homepage() {
   const [loadMore, setLoadMore] = useContext(LoadMoreContext);
   const [filterCatched, setFilterCatched] = useState(false);
   const [filterUnCatched, setFilterUnCatched] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getAllPokemon = async () => {
     const res = await axios(loadMore);
@@ -57,6 +58,10 @@ function Homepage() {
     }
   };
 
+  const handleFilteredSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   //End Filter
   const catchedHandler = (e) => {
     e.currentTarget.checked
@@ -87,16 +92,29 @@ function Homepage() {
 
   return (
     <div className="App">
-      <Filter options={options} handler={handler} />
+      <Filter
+        handleFilteredSearch={handleFilteredSearch}
+        searchTerm={searchTerm}
+        options={options}
+        handler={handler}
+      />
       <Pokedex>
         {allPokemon
           .sort((a, b) => a.id - b.id)
           .filter((pokemon) => {
+            if (
+              pokemon.name
+                .toLowerCase()
+                .replace(/\s+/g, "")
+                .includes(searchTerm.toLowerCase().replace(/\s+/g, ""))
+            ) {
+              return pokemon;
+            }
+            return null;
+          })
+          .filter((pokemon) => {
             if (!filterCatched && !filterUnCatched) {
-              if (true) {
-                return pokemon;
-              }
-              return null;
+              return pokemon;
             } else {
               if (filterCatched && pokemon.catched) {
                 return pokemon;

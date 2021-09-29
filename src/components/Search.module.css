@@ -1,0 +1,214 @@
+.search {
+  font-family: "Knewave", cursive;
+}
+
+.search label {
+  width: 100%;
+  max-width: 300px;
+}
+
+.search input {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  padding: 15px;
+  background-color: white;
+  border: 2px solid black;
+  color: #111;
+  font-size: 15px;
+  box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.62);
+
+  transform: skew(-3deg, 1deg);
+  font-family: "Knewave", cursive;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.search input:focus,
+.search input:valid {
+  outline: none;
+}
+.search input:focus ~ ul li:nth-child(1)::before,
+.search input:valid ~ ul li:nth-child(1)::before {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+.search input:focus ~ ul li:nth-child(1)::after,
+.search input:valid ~ ul li:nth-child(1)::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+.search input:focus ~ ul li:nth-child(2)::before,
+.search input:valid ~ ul li:nth-child(2)::before {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+.search input:focus ~ ul li:nth-child(2)::after,
+.search input:valid ~ ul li:nth-child(2)::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+.search input:focus ~ ul li:nth-child(3)::before,
+.search input:valid ~ ul li:nth-child(3)::before {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+.search input:focus ~ ul li:nth-child(3)::after,
+.search input:valid ~ ul li:nth-child(3)::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+.search input:focus ~ ul li:nth-child(4)::before,
+.search input:valid ~ ul li:nth-child(4)::before {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+.search input:focus ~ ul li:nth-child(4)::after,
+.search input:valid ~ ul li:nth-child(4)::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+.search input:focus ~ ul li:nth-child(5)::before,
+.search input:valid ~ ul li:nth-child(5)::before {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+.search input:focus ~ ul li:nth-child(5)::after,
+.search input:valid ~ ul li:nth-child(5)::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+.search input:focus ~ ul li:nth-child(6)::before,
+.search input:valid ~ ul li:nth-child(6)::before {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+.search input:focus ~ ul li:nth-child(6)::after,
+.search input:valid ~ ul li:nth-child(6)::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+.search input:focus ~ ul li:nth-child(1)::after,
+.search input:valid ~ ul li:nth-child(1)::after {
+  transition-delay: 400ms;
+}
+.search input:focus ~ ul li:nth-child(2)::after,
+.search input:valid ~ ul li:nth-child(2)::after {
+  transition-delay: 600ms;
+}
+.search input:focus ~ ul li:nth-child(3)::after,
+.search input:valid ~ ul li:nth-child(3)::after {
+  transition-delay: 800ms;
+}
+.search input:focus ~ ul li:nth-child(4)::after,
+.search input:valid ~ ul li:nth-child(4)::after {
+  transition-delay: 1000ms;
+}
+.search input:focus ~ ul li:nth-child(5)::after,
+.search input:valid ~ ul li:nth-child(5)::after {
+  transition-delay: 1200ms;
+}
+.search input:focus ~ ul li:nth-child(6)::after,
+.search input:valid ~ ul li:nth-child(6)::after {
+  transition-delay: 1400ms;
+}
+
+.search label {
+  position: relative;
+}
+
+.search ul {
+  position: absolute;
+  top: 38px;
+  left: -4px;
+  margin: 0;
+  list-style: none;
+  padding-left: 22px;
+  position: absolute;
+  display: flex;
+  pointer-events: none;
+  transition: 200ms;
+}
+.search ul li {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: transparent;
+  pointer-events: none;
+  transition: 500ms ease-in-out;
+}
+.search ul li ::selection {
+  color: transparent;
+}
+.search ul li::after,
+.search ul li::before {
+  color: black;
+  position: absolute;
+  transition: 500ms ease-in-out;
+}
+.search ul li::before {
+  top: -20px;
+}
+.search ul li::after {
+  top: -63px;
+  transform: scale(0) rotate(210deg);
+  filter: blur(20px);
+}
+.search ul li[custom-attribute="s"]::before {
+  content: attr(s) "s";
+  transition-delay: 200ms;
+}
+.search ul li[custom-attribute="s"]::after {
+  content: attr(s) "s";
+  left: 12px;
+  color: #666;
+}
+.search ul li[custom-attribute="e"]::before {
+  content: attr(e) "e";
+  transition-delay: 400ms;
+}
+.search ul li[custom-attribute="e"]::after {
+  content: attr(e) "e";
+  left: 24px;
+  color: #666;
+}
+.search ul li[custom-attribute="a"]::before {
+  content: attr(a) "a";
+  transition-delay: 600ms;
+}
+.search ul li[custom-attribute="a"]::after {
+  content: attr(a) "a";
+  left: 36px;
+  color: #666;
+}
+.search ul li[custom-attribute="r"]::before {
+  content: attr(r) "r";
+  transition-delay: 800ms;
+}
+.search ul li[custom-attribute="r"]::after {
+  content: attr(r) "r";
+  left: 48px;
+  color: #666;
+}
+.search ul li[custom-attribute="c"]::before {
+  content: attr(c) "c";
+  transition-delay: 1000ms;
+}
+.search ul li[custom-attribute="c"]::after {
+  content: attr(c) "c";
+  left: 60px;
+  color: #666;
+}
+.search ul li[custom-attribute="h"]::before {
+  content: attr(h) "h";
+  transition-delay: 1200ms;
+}
+.search ul li[custom-attribute="h"]::after {
+  content: attr(h) "h";
+  left: 72px;
+  color: #666;
+}
+
+@media screen and (max-width: 992px) {
+  .search input {
+    width: 50%;
+  }
+}

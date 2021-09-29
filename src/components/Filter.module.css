@@ -1,8 +1,12 @@
 .pokewrapper {
   display: flex;
+  margin: 50px 0;
 }
 .options {
   width: fit-content;
+}
+.options_container {
+  display: flex;
 }
 .options .option {
   display: flex;
@@ -130,4 +134,16 @@
 }
 .selected .indicatorinner {
   background: #f15324;
+}
+
+@media screen and (max-width: 992px) {
+  .pokewrapper {
+    flex-direction: column;
+    margin: 15px;
+  }
+}
+@media screen and (max-width: 568px) {
+  .options_container {
+    flex-direction: column;
+  }
 }
