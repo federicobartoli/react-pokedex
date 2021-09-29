@@ -5,11 +5,14 @@ import App from "./App";
 
 //Context
 import AllPokemonContextProvider from "./context/AllPokemonContext";
+import LoadMoreContextProvider from "./context/LoadMoreContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <AllPokemonContextProvider>
-      <App />
+      <LoadMoreContextProvider>
+        <App />
+      </LoadMoreContextProvider>
     </AllPokemonContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

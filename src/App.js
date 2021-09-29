@@ -1,65 +1,42 @@
-//React
-import { useState, useEffect, useContext } from "react";
-//Axios
-import axios from "axios";
-//Components
-import PokeCard from "./components/PokeCard";
-import Pokedex from "./components/Pokedex";
-//Context
-import { AllPokemonContext } from "./context/AllPokemonContext";
+// React
+import { useEffect } from "react";
+// Routers
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+  withRouter,
+} from "react-router-dom";
+//Index
+import Homepage from "./pages/Homepage";
+//Detail
+import Detail from "./pages/Detail";
 
 function App() {
-  const [allPokemon, setAllPokemon] = useContext(AllPokemonContext);
-  const [loadMore, setLoadMore] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=20"
-  );
-
-  const getAllPokemon = async () => {
-    const res = await axios(loadMore);
-    const data = await res.data;
-    setLoadMore(data.next);
-    console.log(data);
-
-    function createObj(result) {
-      result.map(async (pokemon) => {
-        const res = await axios(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await res.data;
-        setAllPokemon((currentList) => [...currentList, data]);
-      });
-    }
-    createObj(data.results);
-  };
-
-  const catchedHandler = (e) => {
-    console.log(e.currentTarget.checked, "ciao");
-  };
-
-  console.log(allPokemon);
-
-  useEffect(() => {
-    getAllPokemon();
-  }, []);
-
+  function HandleScrollToTop(props) {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+    return props.children;
+  }
+  const ScrollToTop = withRouter(HandleScrollToTop);
   return (
     <div className="App">
-      <h1>Pokemon</h1>
-      <Pokedex>
-        {allPokemon
-          .sort((a, b) => a.id - b.id)
-          .map((pokemon) => (
-            <PokeCard
-              catchedHandler={catchedHandler}
-              img={pokemon.sprites.other.dream_world.front_default}
-              name={pokemon.name}
-              key={pokemon.id}
-              id={pokemon.id}
-              type={pokemon.types[0].type.name}
-            />
-          ))}
-      </Pokedex>
-      <button onClick={getAllPokemon}>Carica altri</button>
+      <Router>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Route exact path="/detail/:id">
+              <Detail />
+            </Route>
+          </Switch>
+        </ScrollToTop>
+      </Router>
     </div>
   );
 }
