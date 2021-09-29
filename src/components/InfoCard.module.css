@@ -1,0 +1,17 @@
+.infos {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  margin: 0;
+  padding: 8px 0;
+}
+
+li {
+  text-align: left;
+  text-transform: capitalize;
+  list-style: none;
+  padding-bottom: 4px;
+}

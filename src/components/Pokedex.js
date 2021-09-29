@@ -1,7 +1,7 @@
 import classes from "./Pokedex.module.css";
 
 const Pokedex = (props) => {
-  return <ul className={classes.pokedex}>{props.children}</ul>;
+  return <div className={classes.pokedex}>{props.children}</div>;
 };
 
 export default Pokedex;

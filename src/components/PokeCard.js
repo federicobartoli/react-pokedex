@@ -5,16 +5,25 @@ import Catched from "./Catched";
 
 const PokeCard = (props) => {
   return (
-    <li className={`${classes.card} ${props.type}`}>
-      <figure>
-        <Link to={`/detail/${props.id}`}>
-          <img src={props.img} alt={props.name} />
-        </Link>
-      </figure>
-      <p>{props.id}</p>
-      <h5>{props.name}</h5>
-      <Catched catchedHandler={props.catchedHandler} />
-    </li>
+    <div className={`${classes.card} ${props.type}`}>
+      <div>
+        <figure>
+          <Link to={`/detail/${props.id}`}>
+            <img src={props.img} alt={props.name} />
+          </Link>
+        </figure>
+        <p>{props.id}</p>
+        <h5>{props.name}</h5>
+        {!props.hideCatched && (
+          <Catched
+            id={props.id}
+            catched={props.catched}
+            catchedHandler={props.catchedHandler}
+          />
+        )}
+      </div>
+      {props.children}
+    </div>
   );
 };
 

@@ -1,0 +1,10 @@
+.back {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  height: 15px;
+  width: 15px;
+  border: 1px solid tomato;
+  border-width: 2px 2px 0 0;
+  transform: rotate(225deg);
+}

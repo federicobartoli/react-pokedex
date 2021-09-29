@@ -9,7 +9,6 @@ import Pokedex from "../components/Pokedex";
 //Context
 import { AllPokemonContext } from "../context/AllPokemonContext";
 import { LoadMoreContext } from "../context/LoadMoreContext";
-
 function Homepage() {
   const [allPokemon, setAllPokemon] = useContext(AllPokemonContext);
   const [loadMore, setLoadMore] = useContext(LoadMoreContext);
@@ -31,23 +30,40 @@ function Homepage() {
   };
 
   const catchedHandler = (e) => {
-    e.currentTarget.checked && console.log("catched");
+    e.currentTarget.checked
+      ? setAllPokemon((prevAllPokemon) => {
+          return Object.values({
+            ...prevAllPokemon,
+            [e.target.name]: {
+              ...prevAllPokemon[e.target.name],
+              catched: true,
+            },
+          });
+        })
+      : setAllPokemon((prevAllPokemon) => {
+          return Object.values({
+            ...prevAllPokemon,
+            [e.target.name]: {
+              ...prevAllPokemon[e.target.name],
+              catched: false,
+            },
+          });
+        });
   };
-
-  console.log(allPokemon);
 
   useEffect(() => {
     allPokemon.length === 0 && getAllPokemon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="App">
-      <h1>Pokemon</h1>
       <Pokedex>
         {allPokemon
           .sort((a, b) => a.id - b.id)
           .map((pokemon) => (
             <PokeCard
+              catched={pokemon.catched}
               catchedHandler={catchedHandler}
               img={pokemon.sprites.other.dream_world.front_default}
               name={pokemon.name}

@@ -1,5 +1,6 @@
 .card {
-  list-style: none;
+  display: flex;
+  justify-content: center;
   border: 1px solid #efefef;
   border-radius: 0.2rem;
   min-width: 160px;
@@ -8,7 +9,17 @@
   z-index: 1;
 }
 
-.card:hover img {
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+  .card * {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+.card:hover img:first-child {
   transform: scale(1.2);
   transition: all 0.4s ease;
 }
