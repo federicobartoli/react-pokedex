@@ -3,7 +3,7 @@ import { useEffect, useContext, useState } from "react";
 //Axios
 import axios from "axios";
 // Routers
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 //Loader
 import Loader from "react-loader-spinner";
 //Context
@@ -28,8 +28,6 @@ const Detail = (props) => {
       setError(err);
     }
   };
-
-  console.log(pokemon);
 
   const catchedHandler = (e) => {
     e.currentTarget.checked
