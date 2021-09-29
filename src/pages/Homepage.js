@@ -1,17 +1,21 @@
 //React
-import { useEffect, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 
 //Axios
 import axios from "axios";
 //Components
 import PokeCard from "../components/PokeCard";
 import Pokedex from "../components/Pokedex";
+import Filter from "../components/Filter";
+import Filterclasses from "../components/Filter.module.css";
 //Context
 import { AllPokemonContext } from "../context/AllPokemonContext";
 import { LoadMoreContext } from "../context/LoadMoreContext";
 function Homepage() {
   const [allPokemon, setAllPokemon] = useContext(AllPokemonContext);
   const [loadMore, setLoadMore] = useContext(LoadMoreContext);
+  const [filterCatched, setFilterCatched] = useState(false);
+  const [filterUnCatched, setFilterUnCatched] = useState(false);
 
   const getAllPokemon = async () => {
     const res = await axios(loadMore);
@@ -28,7 +32,32 @@ function Homepage() {
     }
     createObj(data.results);
   };
+  //Filter
 
+  const options = ["All", "Catched", "Uncatched"];
+
+  const handler = (o) => {
+    options.map((option) => {
+      return document
+        .getElementById(option)
+        .classList.remove(Filterclasses.selected);
+    });
+    document.getElementById(o).classList.add(Filterclasses.selected);
+    if (o === "All") {
+      setFilterCatched(false);
+      setFilterUnCatched(false);
+    }
+    if (o === "Catched") {
+      setFilterCatched(true);
+      setFilterUnCatched(false);
+    }
+    if (o === "Uncatched") {
+      setFilterCatched(false);
+      setFilterUnCatched(true);
+    }
+  };
+
+  //End Filter
   const catchedHandler = (e) => {
     e.currentTarget.checked
       ? setAllPokemon((prevAllPokemon) => {
@@ -58,9 +87,26 @@ function Homepage() {
 
   return (
     <div className="App">
+      <Filter options={options} handler={handler} />
       <Pokedex>
         {allPokemon
           .sort((a, b) => a.id - b.id)
+          .filter((pokemon) => {
+            if (!filterCatched && !filterUnCatched) {
+              if (true) {
+                return pokemon;
+              }
+              return null;
+            } else {
+              if (filterCatched && pokemon.catched) {
+                return pokemon;
+              }
+              if (filterUnCatched && !pokemon.catched) {
+                return pokemon;
+              }
+              return null;
+            }
+          })
           .map((pokemon) => (
             <PokeCard
               catched={pokemon.catched}
@@ -73,7 +119,11 @@ function Homepage() {
             />
           ))}
       </Pokedex>
-      <button onClick={getAllPokemon}>Carica altri</button>
+      {!filterCatched && (
+        <button className="loadmore" onClick={getAllPokemon}>
+          Carica altri
+        </button>
+      )}
     </div>
   );
 }
