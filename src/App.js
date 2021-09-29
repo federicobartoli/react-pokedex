@@ -24,7 +24,7 @@ function App() {
   const ScrollToTop = withRouter(HandleScrollToTop);
   return (
     <div className="App">
-      <Router>
+      <Router basename="/react-pokedex">
         <ScrollToTop>
           <Switch>
             <Route exact path="/">

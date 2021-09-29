@@ -5,6 +5,7 @@
 .search label {
   width: 100%;
   max-width: 300px;
+  display: block;
 }
 
 .search input {
